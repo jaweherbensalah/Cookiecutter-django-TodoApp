@@ -26,7 +26,7 @@ const UpdateTodo = () => {
    let loadTodos = async () => {
     const result = await axios.get(`http://127.0.0.1:8000/todo/crud/${id}`);
     console.log(result.data.name);
-
+   //retrieve data to form fields
     // setImage(result.data.image);
     setTaskTitle(result.data.task_title);
     setTaskDescription(result.data.task_description);
@@ -35,13 +35,13 @@ const UpdateTodo = () => {
    }
 
 
-// Update s single todo by id
+// Update a single todo by id
 
    const updateSingleTodo = async () => {
         let formField = new FormData()
 
-        formField.append('task_tittle',task_title)
-        formField.append('task_description',setTaskDescription)
+        formField.append('task_title',task_title)
+        formField.append('task_description',task_description)
         formField.append('created_at',created_at)
         formField.append('updated_at',updated_at)
 
@@ -51,7 +51,7 @@ const UpdateTodo = () => {
 
         await axios({
             method: 'PUT',
-            url: `http://127.0.0.1:8000/todo/crud/${id}/`,
+            url: `http://localhost:8000/todo/crud/${id}/`,
             data: formField
         }).then(response => {
             console.log(response.data);
@@ -59,10 +59,6 @@ const UpdateTodo = () => {
         })
 
     }
-
-
-
-    
 
     return (
        
@@ -105,6 +101,16 @@ const UpdateTodo = () => {
               name="created_at"
               value={created_at}
               onChange={(e) => setCreatedAt(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="Enter update date"
+              name="updated_at"
+              value={updated_at}
+              onChange={(e) => setUpdatedAt(e.target.value)}
             />
           </div>
       <button onClick={updateSingleTodo} className="btn btn-primary btn-block">Update </button>

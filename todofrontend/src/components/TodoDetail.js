@@ -49,7 +49,8 @@ const deleteTodo = async (id) => {
           
 
             <Link className="btn btn-outline-primary mr-2" to={`/${todo.id}/update`}>Update</Link>
-            {/* <Link className="btn btn-danger" onClick={() => deleteTodo(todo.id)}> Delete</Link>  */}
+        {/* <Link className="btn btn-danger" onClick={() => deleteTodo(todo.id)}> Delete</Link>   */}
+            <button className="btn btn-danger" onClick={()=>{deleteTodo(todo.id)}}>Delete</button> 
 
           
         </div>
